@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'faker'
+
+50.times do
+  Task.create!(
+    title: Faker::Lorem.sentence
+    description::Lorem.paragraph
+    )
+end
