@@ -8,9 +8,19 @@
 
 require 'faker'
 
-50.times do
-  Task.create!(
-    title: Faker::Lorem.sentence
-    description::Lorem.paragraph
+=begin 20.times do
+  task = Task.create!(
+    title:        Faker::Lorem.sentence
+    description:  Faker::Lorem.paragraph
     )
-end
+=end
+
+admin = User.new(
+   name:     'Admin User',
+   email:    'admin@example.com',
+   password: 'helloworld',
+ )
+ admin.skip_confirmation!
+ admin.save!
+
+ puts "Seed finished"
