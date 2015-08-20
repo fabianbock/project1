@@ -6,11 +6,12 @@ class ApplicationController < ActionController::Base
   before_action :devise_allow_name, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-   users_show_path
- end
+    user_path(current_user)
+  end
 
+protected
 
   def devise_allow_name
-     devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :name
   end
 end

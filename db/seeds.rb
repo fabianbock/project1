@@ -15,12 +15,21 @@ require 'faker'
     )
 =end
 
-admin = User.new(
-   name:     'Admin User',
-   email:    'admin@example.com',
-   password: 'helloworld',
- )
- admin.skip_confirmation!
- admin.save!
+admin = User.find_or_initialize_by(
+  name:     'Admin User',
+  email:    'admin@example.com'
+)
+admin.password = 'helloworld'
+admin.skip_confirmation!
+admin.save!
+
+10.times do
+  task = Task.create!(
+    user: admin,
+    title: Faker::Lorem.sentence,
+    description: Faker::Lorem.paragraph)
+
+  task.update_attributes!(created_at: rand(10.minutes .. 10.hours).ago)
+end
 
  puts "Seed finished"

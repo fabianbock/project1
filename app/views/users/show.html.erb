@@ -1,7 +1,14 @@
 <h1>My User Profile</h1>
 <p>
-  <% if current_user %>
-    <%= current_user.name %><br />
-    <%= current_user.email %><br />
+  <% if @user %>
+    <%= @user.name %><br />
+    <%= @user.email %><br />
   <% end %>
 </p>
+
+<h2>My Tasks</h2>
+<div>
+  <% user.tasks.each do |task| %>
+    <%= render partial: 'tasks/task', locals: { task: task} %>
+  <% end %>
+</div>

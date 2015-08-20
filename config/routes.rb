@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   
-  get 'users/show'
-
   devise_for :users
-
-  get 'tasks/show'
-  get 'tasks/edit'
-
+  resources :users, only: [:show] do
+    resources :tasks, except: [:show]   
+  end
+  get 'profile', to: 'users#show'
   get 'home/about'
   root to: 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
