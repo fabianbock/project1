@@ -8,12 +8,6 @@
 
 require 'faker'
 
-=begin 20.times do
-  task = Task.create!(
-    title:        Faker::Lorem.sentence
-    description:  Faker::Lorem.paragraph
-    )
-=end
 
 admin = User.find_or_initialize_by(
   name:     'Admin User',
@@ -30,6 +24,23 @@ admin.save!
     description: Faker::Lorem.paragraph)
 
   task.update_attributes!(created_at: rand(10.minutes .. 10.hours).ago)
+end
+
+member = User.find_or_initialize_by(
+  name:   'Member OfSociety',
+  email:  'member@example.com'
+  )
+  member.password = 'helloworld'
+  member.skip_confirmation!
+  member.save!
+
+10.times do
+  task = Task.create!(
+    user: member,
+    title: Faker::Lorem.sentence,
+    description: Faker::Lorem.paragraph)
+
+    task.update_attributes!(created_at: rand(10.minutes .. 10.hours).ago)
 end
 
  puts "Seed finished"
