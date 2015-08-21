@@ -5,5 +5,7 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+
+    @task=Task.new
   end
 end

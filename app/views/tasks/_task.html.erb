@@ -1,11 +1,16 @@
 <div>
   <div class="media-body">
+    
     <h4 class="media-heading">
       <%= task.title %>
+      <small>
+        <strong><%= "(#{task.days_left} days left) " %></strong>
+      </small>
     </h4>
 
     <small>
-      <%= task.description %>
+      <%= task.description %> 
     </small>
+    <%= link_to "Delete", [task.user, task], method: :delete, class: 'glyphicon glyphicon-ok', remote: true %>
   </div>
 </div>
